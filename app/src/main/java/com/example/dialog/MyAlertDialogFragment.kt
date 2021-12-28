@@ -1,4 +1,5 @@
 package com.example.dialog
+
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -6,38 +7,25 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import java.lang.IllegalStateException
 
-class MyAlertDialogFragment : DialogFragment(){
+class MyAlertDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-        // ダイアログ生成
-        // activity : 呼び出し元のActivity
-        // activity?.let{} : nullチェックし、null出なければ処理をする
+        val items = arrayOf("A型", "B型", "O型", "AB型") // ダイアログに表示したい項目のリスト
         val dialog = activity?.let {
-
-            // AlertDialogクラスのBuilderでダイアログ生成
             AlertDialog.Builder(it).apply {
-                // applyを使うと、呼び出し元のオブジェクトが自動でthisになり、
-                // 呼び出し元のプロパティやメソッドに簡潔にアクセスすることができる
-
-                // タイトルなどの情報をセット
-                setTitle(R.string.d_title)
-                setMessage(R.string.d_message)
+                setTitle(R.string.blood_type_title)
                 setIcon(R.drawable.wings)
 
-                // 各ボタン（はい、いいえ、キャンセル）の設定
-                setPositiveButton("はい") { dialog, which ->
-                    Toast.makeText(activity, "はい", Toast.LENGTH_SHORT).show()
+                // 選択された項目を取得しトースト
+                // setItems(リスト, 選択時のイベントリスナー)
+                // イベントリスナーが取得するwhichに選択された項目のindex番号が格納されてる
+                setItems(items) { dialog, which ->
+                    Toast.makeText(
+                        activity, "「${items[which]}」が選択されました。",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-                setNegativeButton("いいえ") { dialog, which ->
-                    Toast.makeText(activity, "いいえ", Toast.LENGTH_SHORT).show()
-                }
-                setNeutralButton("キャンセル") { dialog, which ->
-                    Toast.makeText(activity, "キャンセル", Toast.LENGTH_SHORT).show()
-                }
-            }.create() // 生成するcreateメソッドを忘れない
+            }.create()
         }
-
-        // nullの場合はエラーをスロー
-        return dialog ?: throw IllegalStateException("Activity is null")
+        return dialog ?: throw IllegalStateException("Activity is null.")
     }
 }

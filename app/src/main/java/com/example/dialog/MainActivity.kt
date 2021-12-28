@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // ダイアログ表示処理をClickListenerに登録
-        binding.button.setOnClickListener {
+        binding.bloodTypeButton.setOnClickListener {
             val dialog = MyAlertDialogFragment()
             dialog.show(supportFragmentManager, "dialog_basic")
         }
