@@ -9,18 +9,23 @@ import java.lang.IllegalStateException
 
 class MyAlertDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        var selectedItemIndex = 0 // 選択した項目のIndex
         val items = arrayOf("A型", "B型", "O型", "AB型") // ダイアログに表示したい項目のリスト
         val dialog = activity?.let {
             AlertDialog.Builder(it).apply {
                 setTitle(R.string.blood_type_title)
                 setIcon(R.drawable.wings)
 
-                // 選択された項目を取得しトースト
-                // setItems(リスト, 選択時のイベントリスナー)
-                // イベントリスナーが取得するwhichに選択された項目のindex番号が格納されてる
-                setItems(items) { dialog, which ->
+                    //選択したらselectedItemIndexをその項目のIndex番号に更新
+                setSingleChoiceItems(items, selectedItemIndex) { dialog, which ->
+                    selectedItemIndex = which
+                }
+
+                    //トースト
+                    // 要は選択した項目のIndexを変数で補完し、最後に参照するという古典的なやり方
+                setPositiveButton("OK") { dialog, which ->
                     Toast.makeText(
-                        activity, "「${items[which]}」が選択されました。",
+                        activity, "「${items[selectedItemIndex]}」が選択されました。",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
