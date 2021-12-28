@@ -1,48 +1,46 @@
 package com.example.dialog
 
-import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import java.lang.IllegalStateException
+import java.util.*
 
 class MyAlertDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val items = arrayOf("チャーハン", "ラーメン", "たこ焼き", "焼きそば", "キャベツ") // ダイアログに表示したい項目のリスト
-        val selectedItems = booleanArrayOf(true, true, true, false, false, false) // 各項目の選択状況
+
+        // 選択した日付をEditTextに反映させる
+
+        // 今日の日付
+        val todayCal = Calendar.getInstance()
         val dialog = activity?.let {
-            AlertDialog.Builder(it).apply {
-                setTitle(R.string.favarite_food_title)
-                setIcon(R.drawable.wings)
 
-                    //各項目の選択状況が変更される
-                setMultiChoiceItems(items, selectedItems) { dialog, which, isChecked ->
-                    selectedItems[which] = isChecked
-                }
-
-                    //トースト
-                    //trueの項目だけを入れたリストを作る
-                setPositiveButton("OK") { dialog, which ->
-                    val favaliteFood = mutableListOf<String>()
-                        // forEachIndexed: リストの各要素とIndexを同時に取得してくる
-                    selectedItems.forEachIndexed { index, e ->
-                        if (e) favaliteFood.add(items[index])
-                    }
-
-                    val msg: String = if (favaliteFood.isNotEmpty()) {
-                        "好きな食べ物は${favaliteFood.joinToString()}です"
-                    } else {
-                        "好きな食べ物はありません。"
-                    }
-
-                    Toast.makeText(
-                        activity, msg,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }.create()
+            // DatePickerDialog
+            // 第一引数にcontext(今回の場合は表示するActivity)
+            // 第二引数に選択した時のイベントリスナー
+            // 第三、四、五はそれぞれ年、月、日の初期値を入れる
+            DatePickerDialog(
+                it,
+                { view, year, monthOfYear, dayOfMonth ->
+                    // 選択した日付をEditTextに反映
+                    val txtDate = it.findViewById<EditText>(R.id.editText)
+                    txtDate.setText(
+                        getString(
+                            R.string.date_text,
+                            year, monthOfYear + 1,
+                            dayOfMonth
+                        )
+                    )
+                },
+                // 初期の日付
+                todayCal[Calendar.YEAR],
+                todayCal[Calendar.MONTH],
+                todayCal[Calendar.DAY_OF_MONTH],
+            )
         }
+
         return dialog ?: throw IllegalStateException("Activity is null.")
     }
 }
