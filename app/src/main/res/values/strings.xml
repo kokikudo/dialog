@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">dialog</string>
-    <string name="blood_type_button">血液型</string>
-    <string name="blood_type_title">血液型を選択</string>
+    <string name="favalite_food_button">好きな食べ物</string>
+    <string name="favarite_food_title">好きな食べ物</string>
 </resources>
