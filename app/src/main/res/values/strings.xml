@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">dialog</string>
+    <string name="d_button">ダイアログ表示</string>
+    <string name="d_title">タイトル</string>
+    <string name="d_message">本文</string>
+</resources>
