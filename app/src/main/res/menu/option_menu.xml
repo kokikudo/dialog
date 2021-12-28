@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 静的なオプションメニュー用の定義ファイル -->
+    <!-- 本書P303でMenuItemで指定できる主な属性を確認できる -->
+    <item
+        android:icon="@drawable/menu1"
+        android:orderInCategory="0"
+        android:title="@string/home"
+        app:showAsAction="never" />
+    <item
+        android:icon="@drawable/menu2"
+        android:orderInCategory="1"
+        android:title="@string/help">
+        <menu>
+            <item
+                android:icon="@drawable/menu3"
+                android:orderInCategory="0"
+                android:title="@string/search" />
+            <item
+                android:icon="@drawable/menu4"
+                android:orderInCategory="1"
+                android:title="@string/in" />
+            <item
+                android:icon="@drawable/menu5"
+                android:orderInCategory="2"
+                android:title="@string/out" />
+            <item
+                android:icon="@drawable/menu6"
+                android:orderInCategory="3"
+                android:title="@string/version" />
+        </menu>
+    </item>
+    <item
+        android:icon="@drawable/menu7"
+        android:orderInCategory="3"
+        android:title="@string/setting">
+        <menu>
+            <item
+                android:icon="@drawable/menu8"
+                android:orderInCategory="0"
+                android:title="@string/bulb" />
+            <item
+                android:icon="@drawable/menu9"
+                android:orderInCategory="1"
+                android:title="@string/speaker" />
+            <item
+                android:icon="@drawable/menu10"
+                android:orderInCategory="2"
+                android:title="@string/key" />
+        </menu>
+    </item>
+    <item
+        android:icon="@drawable/menu11"
+        android:orderInCategory="4"
+        android:title="@string/garbage" />
+</menu>

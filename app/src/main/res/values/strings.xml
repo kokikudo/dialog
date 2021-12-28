@@ -4,4 +4,16 @@
     <string name="d_button">OK</string>
     <string name="d_title">この名前でよろしいですか？</string>
     <string name="greet">%1$sさん、こんにちは。</string>
+
+    <string name="home">ホーム</string>
+    <string name="help">ヘルプ</string>
+    <string name="search">検索</string>
+    <string name="in">インポート</string>
+    <string name="out">エクスポート</string>
+    <string name="version">バージョン</string>
+    <string name="setting">設定</string>
+    <string name="bulb">明るさ</string>
+    <string name="speaker">音量</string>
+    <string name="key">暗証番号</string>
+    <string name="garbage">ごみ箱</string>
 </resources>
